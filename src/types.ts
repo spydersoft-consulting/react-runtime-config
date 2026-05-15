@@ -95,14 +95,14 @@ export type ResolvedSchema<TSchema extends Record<string, Config>> = {
 export type ResolvedConfigValue<TValue extends Config> = TValue extends StringEnumConfig
   ? TValue["enum"][-1]
   : TValue extends StringConfig
-  ? string
-  : TValue extends NumberConfig
-  ? number
-  : TValue extends BooleanConfig
-  ? boolean
-  : TValue extends CustomConfig
-  ? ReturnType<TValue["parser"]>
-  : never;
+    ? string
+    : TValue extends NumberConfig
+      ? number
+      : TValue extends BooleanConfig
+        ? boolean
+        : TValue extends CustomConfig
+          ? ReturnType<TValue["parser"]>
+          : never;
 
 export const isStringConfig = (config: Config): config is StringConfig => config.type === "string";
 export const isStringEnumConfig = (config: Config): config is StringEnumConfig =>
@@ -218,8 +218,8 @@ type Namespaced<T, TNamespace extends string> = {
   [P in keyof T as P extends `getConfig`
     ? `get${Capitalize<TNamespace>}Config`
     : P extends "getAllConfig"
-    ? `getAll${Capitalize<TNamespace>}Config`
-    : `set${Capitalize<TNamespace>}Config`]: T[P];
+      ? `getAll${Capitalize<TNamespace>}Config`
+      : `set${Capitalize<TNamespace>}Config`]: T[P];
 };
 
 export type NamespacedUseConfigReturnType<

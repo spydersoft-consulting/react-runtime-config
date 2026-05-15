@@ -1,19 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import get from "lodash/get";
 import set from "lodash/set";
 import unset from "lodash/unset";
 import { Mock } from "ts-mockery";
 
 import createConfig from ".";
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react";
 import { ConfigOptions } from "./types";
 
 // Localstorage mock
 let store = {};
 
 const backendUrl = "https://localhost";
-const backendWithPort = "https://localhost:5000"
+const backendWithPort = "https://localhost:5000";
 
 const storage = Mock.of<Storage>({
   getItem: (path: string) => get(store, path, null),
